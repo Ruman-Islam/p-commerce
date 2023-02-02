@@ -39,72 +39,74 @@ const Layout = ({ title, children }) => {
 
       <div className="flex min-h-screen flex-col justify-between font-bold">
         <header>
-          <nav className="container mx-auto flex h-12 items-center px-4 justify-between shadow-md">
-            <Link href="/">
-              <a className="text-lg font-bold">pCommerce</a>
-            </Link>
-            <div>
-              <Link href="/cart">
-                <a className="p-2">
-                  Cart
-                  {cartItemsCount > 0 && (
-                    <span className="ml-1 rounded-full bg-red-600 px-2 py-1 text-xs font-bold text-white">
-                      {cartItemsCount}
-                    </span>
-                  )}
-                </a>
+          <nav className="shadow-md">
+            <div className="flex h-12 items-center px-4 justify-between  container mx-auto">
+              <Link href="/">
+                <a className="text-lg font-bold">pCommerce</a>
               </Link>
-              {status === "loading" ? (
-                "Loading"
-              ) : session?.user ? (
-                <Menu as="div" className="relative inline-block">
-                  <Menu.Button className="text-blue-600">
-                    {session.user.name}
-                  </Menu.Button>
-                  <Menu.Items className="absolute right-0 w-56 origin-top-right shadow-lg bg-white">
-                    <Menu.Item>
-                      <DropdownLink className="dropdown-link" href="/profile">
-                        Profile
-                      </DropdownLink>
-                    </Menu.Item>
-                    <Menu.Item>
-                      <DropdownLink
-                        className="dropdown-link"
-                        href="/order-history"
-                      >
-                        Order History
-                      </DropdownLink>
-                    </Menu.Item>
-                    {session.user.isAdmin && (
+              <div>
+                <Link href="/cart">
+                  <a className="p-2">
+                    Cart
+                    {cartItemsCount > 0 && (
+                      <span className="ml-1 rounded-full bg-red-600 px-2 py-1 text-xs font-bold text-white">
+                        {cartItemsCount}
+                      </span>
+                    )}
+                  </a>
+                </Link>
+                {status === "loading" ? (
+                  "Loading"
+                ) : session?.user ? (
+                  <Menu as="div" className="relative inline-block">
+                    <Menu.Button className="text-blue-600">
+                      {session.user.name}
+                    </Menu.Button>
+                    <Menu.Items className="absolute right-0 w-56 origin-top-right shadow-lg bg-white">
+                      <Menu.Item>
+                        <DropdownLink className="dropdown-link" href="/profile">
+                          Profile
+                        </DropdownLink>
+                      </Menu.Item>
                       <Menu.Item>
                         <DropdownLink
                           className="dropdown-link"
-                          href="/admin/dashboard"
+                          href="/order-history"
                         >
-                          Admin Dashboard
+                          Order History
                         </DropdownLink>
                       </Menu.Item>
-                    )}
-                    <Menu.Item>
-                      <a
-                        className="dropdown-link"
-                        href="#"
-                        onClick={logoutClickHandler}
-                      >
-                        Logout
-                      </a>
-                    </Menu.Item>
-                  </Menu.Items>
-                </Menu>
-              ) : (
-                <Link href="/login">
-                  <a className="p-2">Login</a>
-                </Link>
-              )}
+                      {session.user.isAdmin && (
+                        <Menu.Item>
+                          <DropdownLink
+                            className="dropdown-link"
+                            href="/admin/dashboard"
+                          >
+                            Admin Dashboard
+                          </DropdownLink>
+                        </Menu.Item>
+                      )}
+                      <Menu.Item>
+                        <a
+                          className="dropdown-link"
+                          href="#"
+                          onClick={logoutClickHandler}
+                        >
+                          Logout
+                        </a>
+                      </Menu.Item>
+                    </Menu.Items>
+                  </Menu>
+                ) : (
+                  <Link href="/login">
+                    <a className="p-2">Login</a>
+                  </Link>
+                )}
+              </div>
             </div>
           </nav>
         </header>
-        <main className="container mx-auto mt-4 px-4">{children}</main>
+        <main className="container m-auto mt-10 px-4">{children}</main>
         <footer className="flex h-10 justify-center items-center shadow-inner">
           footer
         </footer>
