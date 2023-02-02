@@ -45,7 +45,6 @@ const ShippingScreen = () => {
         },
       })
     );
-
     router.push("/payment");
   };
 
